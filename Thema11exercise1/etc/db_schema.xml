@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="consultation" resource="default" engine="innodb" comment="Consultation Table">
+       <column xsi:type="int" name="ID" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+       <column xsi:type="varchar" name="name" comment="Name"/>
+       <column xsi:type="int" name="hours" padding="10" comment="Duration in hours"/>
+       <column xsi:type="datetime" name="date" comment="Date consultation"/>
+       <column xsi:type="int" name="customer" padding="10" comment="ID customer"/>
+       <column xsi:type="float" name="discount"  comment="Discount"/>
+       <constraint xsi:type="primary" referenceId="PRIMARY">
+           <column name="ID"/>
+       </constraint>
+   </table>
+</schema>

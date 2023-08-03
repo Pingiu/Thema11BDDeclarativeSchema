@@ -1,0 +1,65 @@
+<?php
+/** @var \Perspective\Thema11exercise1\Block\Template $block */
+$viewModel = $block->getViewModel();
+
+$items = $viewModel->getConsultationCollection();
+/* foreach($items as $item){
+    echo "ID: " . $item->getID() . "<br />";
+    echo "Name: " . $item->getName() . "<br />";
+    echo "Hours: " . $item->getHours() . " <br />";
+    echo "Date: " . $item->getDate() . "<br />";
+    echo "Customer: " . $item->getCustomer() . "<br />";
+    echo "Discount: " . $item->getDiscount() . "<br />";
+    echo "Price: " . $item->getPrice() . "<br /><br />";
+} */
+
+foreach($items as $item){
+    //echo "Price: " . $item->getPrice()*$item->getHours() . "<br /><br />";
+    $price = $item->getPrice()*$item->getHours();
+    if($item->getGold() == "Yes" &&  substr($item->getDate(),-8) <= "11:00:00" && substr($item->getDate(),-8) >= "08:00:00" )
+    {   echo "ID: " . $item->getID() . "<br />";
+        echo "Name: " . $item->getName() . "<br />";
+        echo "Date: " . $item->getDate() . " <br />";
+        echo "Status Gold: " . $item->getGold() . " <br />";
+        $GoldDiscount = $item->getDiscount() * 3;
+        echo "Discount: " . $GoldDiscount  . "<br />";
+        $priceTemp = $price * $GoldDiscount;
+        $priceWithDiscount = $price - $priceTemp;
+        echo "PriceWithDiscount: " . $priceWithDiscount. "<br /><br />";    
+    }
+    elseif($item->getGold() == "No" &&  substr($item->getDate(),-8) <= "11:00:00" && substr($item->getDate(),-8) >= "08:00:00"){
+        echo "ID: " . $item->getID() . "<br />";
+        echo "Name: " . $item->getName() . "<br />";
+        echo "Date: " . $item->getDate() . " <br />";
+        echo "Status Gold: " . $item->getGold() . " <br />";
+        $GoldDiscount = $item->getDiscount();
+        echo "Discount: " . $GoldDiscount  . "<br />";
+        $priceTemp = $price * $GoldDiscount;
+        $priceWithDiscount = $price - $priceTemp;
+        echo "PriceWithDiscount: " . $priceWithDiscount. "<br /><br />";  
+    }
+    elseif($item->getGold() == "Yes"){
+        echo "ID: " . $item->getID() . "<br />";
+        echo "Name: " . $item->getName() . "<br />";
+        echo "Date: " . $item->getDate() . " <br />";
+        echo "Status Gold: " . $item->getGold() . " <br />";
+        $GoldDiscount = $item->getDiscount() * 2;
+        echo "Discount: " . $GoldDiscount  . "<br />";
+        $priceTemp = $price * $GoldDiscount;
+        $priceWithDiscount = $price - $priceTemp;
+        echo "PriceWithDiscount: " . $priceWithDiscount. "<br /><br />";  
+    }
+    else{
+        echo "ID: " . $item->getID() . "<br />";
+        echo "Name: " . $item->getName() . "<br />";
+        echo "Date: " . $item->getDate() . " <br />";
+        echo "Status Gold: " . $item->getGold() . " <br />";
+        echo "Price: " . $price. "<br /><br />";  
+    }
+
+    //echo "Price: " . substr($item->getDate(),-8) . "<br /><br />";
+}
+
+
+?>
+
